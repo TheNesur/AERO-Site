@@ -40,8 +40,16 @@
 					echo "Repertoire de photo: " . $row['RepertoirePhoto'] . "<br>";
 					$imgDir = scandir("./img/" . $row['RepertoirePhoto']);
 					foreach($imgDir as $fichier){
-						if($fichier != "." && $fichier != "..")
+						if($fichier != "." && $fichier != ".."){
 						echo "<img width='200' height='200'  src='./img/" . $row['RepertoirePhoto'] . "/" . $fichier . "'></br>";
+						  
+							if(strpos($fichier, "PORTANCE") !== false) {
+								$valeur = preg_split('/ /', $fichier);
+										echo "Valeur de Portance: " . $valeur[1] . "<br>";
+										$trainee = substr($valeur[3], 0, -4);
+										echo "Valeur de Trainée: " . $trainee . "<br>";
+							}
+						}
 					}
 				}
 			}
